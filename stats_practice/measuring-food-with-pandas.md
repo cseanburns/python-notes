@@ -72,7 +72,7 @@ And the results are the same for the R version of this.
 Some [comparisons between R and pandas][9].
 
 
-[1]:https://cseanburns.net/WWW/index.html#a-meaningless-post-on-measuring-food
+[1]:https://cseanburns.net/WWW/index.html#measuring-food-with-pandas
 [2]:https://pandas.pydata.org/docs/index.html
 [3]:https://pandas.pydata.org/docs/reference/api/pandas.Series.html
 [4]:https://pandas.pydata.org/docs/reference/frame.html
