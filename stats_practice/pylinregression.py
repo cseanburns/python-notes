@@ -11,7 +11,7 @@ print('coefficient of determination:', r_sq)
 print('intercept:', model.intercept_)
 print('slope:', model.coef_)
 
-# Another method
+# Another method, which provides more info like R
 import numpy as np
 import statsmodels.api as sm
 x = np.array([30, 30, 32, 33, 34, 35, 36, 38, 40, 41, 41, 43, 45, 45, 47, 48]).reshape((-1, 1))

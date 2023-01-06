@@ -40,14 +40,18 @@ heights.describe()
 # Generate a boxplot
 pd.DataFrame.boxplot(heights)
 plt.show()
+plt.clf() # clear plot
 heights.boxplot()
 plt.show()
+plt.clf()
 
 # Generate a histogram
 pd.DataFrame.hist(heights)
 plt.show()
+plt.clf()
 heights.hist()
 plt.show()
+plt.clf()
 
 # Get the names of the variables
 heights.columns
@@ -62,22 +66,24 @@ plt.show()
 
 ## Linear Regression
 
-## Note: these two methods disagree; need to understand why
-
-### Method 1
-x = heights[['Height3']]
-y = heights[['Height20']]
-
+### Method 1 (More like R output by default)
 import statsmodels.api as sm
-model1 = sm.OLS(x,y)
-results = model1.fit()
-print(results.summary())
+x = heights['Height3']
+x = sm.add_constant(x)
+y = heights['Height20']
+model1 = sm.OLS(y, x).fit()
+predictions = model1.predict(x)
+print_model = model1.summary()
+print(print_model)
 
 ### Method 2
 from sklearn.linear_model import LinearRegression
+x = heights['Height3']
+x = sm.add_constant(x)
+y = heights['Height20']
 model2 = LinearRegression()
 model2.fit(x,y)
 r_sq = model2.score(x,y)
 print('coefficient of determination:', r_sq)
-print('intercept:', model.intercept_)
-print('slope:', model.coef_)
+print('intercept:', model2.intercept_)
+print('slope:', model2.coef_)

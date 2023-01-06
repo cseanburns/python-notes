@@ -1,8 +1,11 @@
 # t-test in Pandas
 
-I posted this on [The Text][1], but add it here for future reference.
+I posted this on [The Text][1], but add it here for future
+reference.
 
-There are three specific [data structures][6] in [pandas][2] that have distinct attributes and methods. The first two are the main structures for analyzing data:
+There are three specific [data structures][6] in [pandas][2]
+that have distinct attributes and methods. The first two are
+the main structures for analyzing data:
 
 - [Series][3], like R vectors
 - [DataFrame][4], like R dataframes
@@ -17,6 +20,12 @@ import numpy as np
 # create data as Python list
 tortillas = [2.1, 2.0, 1.9, 1.7, 2.3, 2.2, 2.0, 2.4, 2.1, 1.9, 2.1, 2.3, 2.0, 2.4]
 
+# get info on list
+type(tortillas)
+len(tortillas)
+max(tortillas)
+min(tortillas)
+
 # get basic stats on list using numpy
 np.mean(tortillas)
 np.median(tortillas)
@@ -26,6 +35,7 @@ round(np.std(tortillas), 2)
 
 # convert list to pandas Series and get basic stats 
 tort2 = pd.Series(tortillas, copy = True)
+type(tort2)
 pd.Series.mean(tort2)
 pd.Series.median(tort2)
 pd.Series.mode(tort2)
@@ -42,12 +52,17 @@ tort2.describe()
 tort2.le(2.0) # return Booleans less than 2.0 
 ```
 
-To perform a **t test**, we need another library, and here [SciPy][7] is common. For a one sample **t test**, I wanted to know if the observed mean was different from a mean of 2.0, which is what I was aiming to get when I was measuring out the dough:
+To perform a **t test**, we need another library, and here
+[SciPy][7] is common. For a one sample **t test**, I wanted
+to know if the observed mean was different from a mean of
+2.0, which is what I was aiming to get when I was measuring
+out the dough:
 
 ```
 from scipy.stats import ttest_1samp
 
 # works on pd.Series or Python Lists
+# second value is population mean
 ttest_1samp(tort2, 2.0)
 ttest_1samp(tortillas, 2.0)
 # These results agree with my R results:
@@ -58,7 +73,10 @@ print('t test equals: ', round(tscore, 3))
 print('p value equals: ', round(pvalue, 3))
 ```
 
-It seems that I'd have to calculate the confidence intervals myself if I only used SciPy, but there's a library called [pingouin][8] that can report the important details for the test:
+It seems that I'd have to calculate the confidence intervals
+myself if I only used SciPy, but there's a library called
+[pingouin][8] that can report the important details for the
+test:
 
 ```
 import pingouin as pg
